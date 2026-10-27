@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#1f4d3a">
+<title>이든 관리 시스템 | 이든관리형학습센터</title>
+<meta name="description" content="출결·생활관리, 월간·일일 학습 플래너, 학습관리, 학습코칭. 관리에 진짜 학습을 더하는 이든관리형학습센터의 관리 시스템입니다.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+  :root{
+    --green:#1f4d3a; --green-d:#143628; --green-l:#e8f0eb;
+    --gold:#d6a84f; --gold-d:#b98a33;
+    --cream:#faf6ec; --ink:#262626; --sub:#5c5c5c; --line:#e7dfcc;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Pretendard,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;color:var(--ink);background:var(--cream);line-height:1.7;word-break:keep-all}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:760px;margin:0 auto;padding:0 20px}
+
+  /* 상단 */
+  header.hero{background:var(--green);color:#fff;padding:56px 0 64px;position:relative;overflow:hidden}
+  header.hero::after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:rgba(214,168,79,.12)}
+  .brand{font-size:14px;letter-spacing:.08em;color:#cfe0d5;font-weight:600}
+  .hero h1{font-size:34px;line-height:1.3;margin:12px 0 18px;font-weight:800}
+  .hero h1 em{font-style:normal;color:var(--gold)}
+  .hero p{color:#e3ece6;font-size:16px}
+  .quote{margin-top:26px;padding:16px 18px;border-left:3px solid var(--gold);background:rgba(255,255,255,.06);border-radius:0 8px 8px 0;font-size:15px;color:#f1f5f2}
+  .quote b{color:#fff}
+
+  section{padding:56px 0}
+  .eyebrow{font-size:13px;font-weight:700;color:var(--gold-d);letter-spacing:.1em}
+  h2{font-size:26px;line-height:1.35;margin:6px 0 10px;color:var(--green-d)}
+  .lead{color:var(--sub);font-size:15.5px;margin-bottom:28px}
+
+  /* 4대 시스템 카드 */
+  .pillars{display:grid;gap:16px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px 22px}
+  .card .head{display:flex;align-items:baseline;gap:12px;margin-bottom:10px}
+  .num{font-size:15px;font-weight:800;color:var(--gold)}
+  .card h3{font-size:20px;color:var(--green-d)}
+  .card p{color:var(--sub);font-size:15px;margin-bottom:12px}
+  .card ul{list-style:none;display:grid;gap:8px}
+  .card li{position:relative;padding-left:20px;font-size:15px}
+  .card li::before{content:"";position:absolute;left:2px;top:10px;width:8px;height:8px;border-radius:50%;background:var(--green)}
+  .tag{display:inline-block;font-size:12px;font-weight:700;color:var(--green);background:var(--green-l);border-radius:4px;padding:1px 6px;margin-left:4px;vertical-align:1px}
+
+  /* 단계 */
+  .alt{background:#fff}
+  .steps{display:grid;gap:14px}
+  .step{display:flex;gap:16px;align-items:flex-start;padding:18px;border-radius:12px;background:var(--cream)}
+  .step .badge{flex:0 0 auto;width:52px;height:52px;border-radius:50%;background:var(--green);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:800;font-size:13px;line-height:1.2}
+  .step .badge small{font-size:10px;font-weight:600;opacity:.8}
+  .step h4{font-size:17px;color:var(--green-d)}
+  .step .when{font-size:13px;color:var(--gold-d);font-weight:700}
+  .step p{font-size:14.5px;color:var(--sub)}
+
+  /* 원장 */
+  .director{display:grid;gap:6px;background:var(--green-d);color:#fff;border-radius:14px;padding:26px 22px}
+  .director .name{font-size:20px;font-weight:800}
+  .director .name span{font-size:14px;font-weight:500;color:var(--gold);margin-left:6px}
+  .director ul{list-style:none;margin-top:8px;display:grid;gap:4px;color:#dbe6df;font-size:14.5px}
+  .director li::before{content:"· ";color:var(--gold)}
+
+  /* 하단 버튼 */
+  .cta{background:var(--green);color:#fff;text-align:center;padding:52px 0 60px}
+  .cta h2{color:#fff}
+  .cta p{color:#d7e4dc;margin-bottom:24px}
+  .btns{display:grid;gap:10px;max-width:420px;margin:0 auto}
+  .btn{display:block;padding:15px 18px;border-radius:999px;font-weight:700;font-size:16px}
+  .btn.primary{background:var(--gold);color:var(--green-d)}
+  .btn.ghost{border:1.5px solid rgba(255,255,255,.6);color:#fff}
+  footer{text-align:center;font-size:13px;color:#8a8a8a;padding:22px 0 30px}
+
+  @media (min-width:720px){
+    .hero h1{font-size:42px}
+    .pillars{grid-template-columns:1fr 1fr}
+    .btns{grid-template-columns:1fr 1fr 1fr;max-width:none}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="brand">EDEN 관리형학습센터</div>
+    <h1>관리에<br><em>'진짜 학습'</em>을 더하다</h1>
+    <p>앉혀 두는 곳이 아니라, 공부하는 힘을 기르는 곳.<br>이든의 관리 시스템을 소개합니다.</p>
+    <div class="quote">
+      오래 앉아 있는 것만으로는 성적이 오르지 않습니다.<br>
+      스스로 꺼내 보는 <b>'인출'</b>과 빈틈을 찾아내는 <b>'꼼꼼한 학습 점검'</b>이 더해질 때, 성적은 비로소 움직이기 시작합니다.
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">EDEN SYSTEM</div>
+    <h2>이든 관리 시스템 4가지</h2>
+    <p class="lead">공부할 수 있는 환경을 먼저 만들고, 그 위에 계획–실행–인출–점검이 매일 이어지도록 설계했습니다.</p>
+
+    <div class="pillars">
+      <article class="card">
+        <div class="head"><span class="num">01</span><h3>출결·생활관리</h3></div>
+        <p>공부의 첫 단추는 '정해진 시간에, 흔들림 없이 앉는 것'입니다.</p>
+        <ul>
+          <li>등·하원 출결 확인과 학부모 알림</li>
+          <li>휴대폰 관리로 공부를 방해하는 유혹 차단</li>
+          <li>학습 집중 앱으로 태블릿의 학습 외 사이트·앱 차단 <span class="tag">이든타</span></li>
+          <li>교시제 운영으로 집중과 휴식의 리듬 유지</li>
+          <li>관리자 상시 순찰로 졸음·딴짓 없는 면학 분위기 유지</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <div class="head"><span class="num">02</span><h3>월간·일일 학습 플래너</h3></div>
+        <p>'열심히 하기'가 아니라 숫자로 세우는 계획. 계획(Plan)–실행(Do)–점검(See)을 매일 반복합니다.</p>
+        <ul>
+          <li><b>월간 플래너</b> – 한 달 목표와 과목별 진도 설계</li>
+          <li><b>일일 플래너</b> – 교재, 페이지, 예상·실제 소요 시간 기록</li>
+          <li>등원 후 계획 점검, 하원 전 달성률 확인</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <div class="head"><span class="num">03</span><h3>학습관리</h3></div>
+        <p>메타인지 학습법과 에듀테크 도구로 '아는 느낌'이 아닌 '진짜 아는 것'을 만듭니다.</p>
+        <ul>
+          <li>과목별 순공 시간 기록과 학습량 관리 <span class="tag">이든타</span></li>
+          <li>5분 백지 인출 노트 <span class="tag">EDEN_CUE</span></li>
+          <li>확·찍·실·모 4단계 오답 분석 <span class="tag">메타Pro</span></li>
+          <li>메타인지 기반 하루 80단어 암기 <span class="tag">EDEN_VOC</span></li>
+          <li>수능·내신 24시간 질의응답 시스템 <span class="tag">EDEN_GO</span></li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <div class="head"><span class="num">04</span><h3>학습코칭</h3></div>
+        <p>공부 방법과 습관을 함께 점검하는 학습코칭. 같은 시간을 들여도 더 큰 결과가 나오도록 돕습니다.</p>
+        <ul>
+          <li>플래너·이든타 순공 시간 점검과 습관 피드백</li>
+          <li>인출 노트 작성 습관 점검</li>
+          <li>학습 유형에 맞춘 공부 방법 상담</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="eyebrow">GROWTH ROUTE</div>
+    <h2>3단계로 완성하는 자기주도학습</h2>
+    <p class="lead">처음에는 시스템이 잡아 주고, 마지막에는 스스로 공부를 이어 가는 힘이 남도록 합니다.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="badge"><small>STEP</small>1</div>
+        <div><div class="when">1~2주</div><h4>진단·세팅</h4><p>공부 습관과 학습 유형을 살피고, 플래너와 학습 루틴의 기본 틀을 잡습니다.</p></div>
+      </div>
+      <div class="step">
+        <div class="badge"><small>STEP</small>2</div>
+        <div><div class="when">3~8주</div><h4>루틴 정착</h4><p>출결–계획–인출–점검의 하루 흐름이 몸에 익도록 매일 반복합니다.</p></div>
+      </div>
+      <div class="step">
+        <div class="badge"><small>STEP</small>3</div>
+        <div><div class="when">9주~</div><h4>자기주도 완성</h4><p>스스로 계획하고 점검하는 힘을 길러, 관리 없이도 공부가 이어지게 합니다.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="director">
+      <div class="name">황붕주<span>원장</span></div>
+      <ul>
+        <li>대치동 20년을 포함한 입시 현장 경력 30년</li>
+        <li>前 강남구청 인터넷수능방송 영어 강사</li>
+        <li>前 경향신문 모의고사 외국어영역 출제위원</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <h2>우리 아이에게 맞는 관리, 상담으로 시작하세요</h2>
+    <p>공부 습관부터 함께 진단해 드립니다.</p>
+    <div class="btns">
+      <a class="btn primary" href="https://metastudy25.github.io/2027-Winter-School-Pre-Registration-/" target="_blank" rel="noopener">윈터스쿨 사전예약</a>
+      <a class="btn ghost" href="tel:01084422817">전화 상담 010-8442-2817</a>
+      <a class="btn ghost" href="location.html">오시는 길</a>
+    </div>
+  </div>
+</section>
+
+<footer>이든관리형학습센터 · 경기도 하남시 미사강변대로 80 그린프라자 7층</footer>
+
+</body>
+</html>
